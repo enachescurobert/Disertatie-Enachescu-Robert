@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xo9-DE-46t">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xo9-DE-46t">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Login-->
         <scene sceneID="JgN-az-2iA">
             <objects>
-                <viewController id="Wzg-rr-izg" customClass="LoginVC" customModule="Licenta_Enachescu_Robert" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Wzg-rr-izg" customClass="LoginVC" customModule="DisertatieEnachescuRobert" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Sro-Zv-7iB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,18 +30,18 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCa-IH-s8X">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCa-IH-s8X">
                                         <rect key="frame" x="0.0" y="108" width="374" height="38"/>
-                                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                         <state key="normal" title="Sign In">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="titleColor" systemColor="darkTextColor"/>
                                         </state>
                                         <connections>
                                             <action selector="loginDidTouch:" destination="Wzg-rr-izg" eventType="touchUpInside" id="uTY-EK-K2o"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyf-SC-pYi">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xyf-SC-pYi">
                                         <rect key="frame" x="0.0" y="166" width="374" height="30"/>
                                         <state key="normal" title="Register"/>
                                         <connections>
@@ -59,13 +61,13 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="bFK-8C-qci"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="bFK-8C-qci" firstAttribute="trailing" secondItem="9qC-K6-m2B" secondAttribute="trailing" constant="20" id="LNZ-qt-5Dh"/>
                             <constraint firstItem="9qC-K6-m2B" firstAttribute="leading" secondItem="bFK-8C-qci" secondAttribute="leading" constant="20" id="abP-fm-TdV"/>
                             <constraint firstItem="9qC-K6-m2B" firstAttribute="top" secondItem="bFK-8C-qci" secondAttribute="top" constant="100" id="rJb-41-1kH"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="bFK-8C-qci"/>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="ZPO-34-DGq"/>
                     <connections>
@@ -81,7 +83,7 @@
         <!--RegisterVC-->
         <scene sceneID="ArD-hs-Eh8">
             <objects>
-                <viewController id="fA7-Rr-qMJ" customClass="RegisterVC" customModule="Licenta_Enachescu_Robert" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fA7-Rr-qMJ" customClass="RegisterVC" customModule="DisertatieEnachescuRobert" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ejf-B6-8QO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -110,9 +112,9 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ea3-hL-fXj">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ea3-hL-fXj">
                                         <rect key="frame" x="0.0" y="225" width="374" height="38"/>
-                                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                         <state key="normal" title="Register">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -136,13 +138,13 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ypA-z1-9Za"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ypA-z1-9Za" firstAttribute="trailing" secondItem="9em-No-Dho" secondAttribute="trailing" constant="20" id="GSS-mL-YPT"/>
                             <constraint firstItem="9em-No-Dho" firstAttribute="leading" secondItem="ypA-z1-9Za" secondAttribute="leading" constant="20" id="d13-jH-uEl"/>
                             <constraint firstItem="9em-No-Dho" firstAttribute="top" secondItem="ypA-z1-9Za" secondAttribute="top" constant="100" id="juB-jt-zwx"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ypA-z1-9Za"/>
                     </view>
                     <navigationItem key="navigationItem" id="SLh-xg-8Hk">
                         <barButtonItem key="backBarButtonItem" title="Login" id="6ig-HH-yuM"/>
@@ -161,7 +163,7 @@
         <!--MapVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MapVC" customModule="Licenta_Enachescu_Robert" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapVC" customModule="DisertatieEnachescuRobert" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -169,7 +171,7 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xnt-Mn-S5J">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </mapView>
-                            <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IG6-bx-7YP">
+                            <button opaque="NO" alpha="0.94999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IG6-bx-7YP">
                                 <rect key="frame" x="8" y="95.5" width="30" height="30.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -186,13 +188,13 @@
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nlo-2B-EU8">
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DirectionCell" id="m94-lQ-Ieq">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m94-lQ-Ieq" id="Meh-xk-dlm">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -210,6 +212,7 @@
                                 </connections>
                             </segmentedControl>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xnt-Mn-S5J" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="8vc-cH-h9i"/>
@@ -221,22 +224,17 @@
                             <constraint firstItem="D6x-8f-iv1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="UYF-iL-RWR"/>
                             <constraint firstItem="IG6-bx-7YP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="q5b-A4-8qq"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="pp7-eG-UAM">
-                        <rightBarButtonItems>
-                            <barButtonItem title="Sign out" id="GVk-Gm-uCO">
-                                <connections>
-                                    <action selector="signOut:" destination="BYZ-38-t0r" id="axU-bo-uva"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem enabled="NO" title="Online Users" id="nDm-kg-hU7"/>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="Sign out" id="GVk-Gm-uCO">
+                            <connections>
+                                <action selector="signOut:" destination="BYZ-38-t0r" id="axU-bo-uva"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="directionsTableView" destination="nlo-2B-EU8" id="ZIb-f2-vvZ"/>
                         <outlet property="mapView" destination="xnt-Mn-S5J" id="Lxu-GR-1KR"/>
-                        <outlet property="onlineUsersCount" destination="nDm-kg-hU7" id="5Z8-Tk-QU3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -262,10 +260,19 @@
             <point key="canvasLocation" x="-797.10144927536237" y="120.53571428571428"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="mappin.and.ellipse" catalog="system" width="58" height="64"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qMh-Ab-Caf"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="mappin.and.ellipse" catalog="system" width="118" height="128"/>
+        <systemColor name="darkTextColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

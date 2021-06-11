@@ -12,7 +12,6 @@
 		F6030DCD2673B47C009892B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6030DCC2673B47C009892B6 /* Assets.xcassets */; };
 		F6030DF32673B7B8009892B6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6030DDB2673B7B7009892B6 /* User.swift */; };
 		F6030DF42673B7B8009892B6 /* ScooterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6030DDC2673B7B7009892B6 /* ScooterModel.swift */; };
-		F6030DF52673B7B8009892B6 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6030DDD2673B7B7009892B6 /* UserModel.swift */; };
 		F6030DF62673B7B8009892B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6030DDF2673B7B7009892B6 /* Main.storyboard */; };
 		F6030DF72673B7B8009892B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6030DE22673B7B7009892B6 /* LaunchScreen.storyboard */; };
 		F6030DFA2673B7B8009892B6 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6030DE72673B7B7009892B6 /* RegisterVC.swift */; };
@@ -37,7 +36,6 @@
 		F6030DD12673B47C009892B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F6030DDB2673B7B7009892B6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F6030DDC2673B7B7009892B6 /* ScooterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScooterModel.swift; sourceTree = "<group>"; };
-		F6030DDD2673B7B7009892B6 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		F6030DE02673B7B7009892B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F6030DE32673B7B7009892B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F6030DE72673B7B7009892B6 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 			children = (
 				F6030DDB2673B7B7009892B6 /* User.swift */,
 				F6030DDC2673B7B7009892B6 /* ScooterModel.swift */,
-				F6030DDD2673B7B7009892B6 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -292,7 +289,6 @@
 				F6030DFB2673B7B8009892B6 /* LoginVC.swift in Sources */,
 				F6030DFC2673B7B8009892B6 /* MapVC.swift in Sources */,
 				F6030E012673B7B8009892B6 /* ScooterView.swift in Sources */,
-				F6030DF52673B7B8009892B6 /* UserModel.swift in Sources */,
 				F6030DFA2673B7B8009892B6 /* RegisterVC.swift in Sources */,
 				F6030DC62673B47B009892B6 /* SceneDelegate.swift in Sources */,
 				F6030E022673B7B8009892B6 /* ClusterView.swift in Sources */,

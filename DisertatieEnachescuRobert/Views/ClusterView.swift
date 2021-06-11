@@ -10,12 +10,10 @@ import UIKit
 import MapKit
 
 class ClusterView: MKMarkerAnnotationView {
-  
-  override var annotation: MKAnnotation? {
-    willSet {
-      markerTintColor = UIColor.brown
-      displayPriority = .required
+    override var annotation: MKAnnotation? {
+        willSet {
+            markerTintColor = UIColor.brown
+            displayPriority = .required
+        }
     }
-  }
-
 }
