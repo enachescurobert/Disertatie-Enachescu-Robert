@@ -3,16 +3,26 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		F6030DC42673B47B009892B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6030DC32673B47B009892B6 /* AppDelegate.swift */; };
 		F6030DC62673B47B009892B6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6030DC52673B47B009892B6 /* SceneDelegate.swift */; };
-		F6030DC82673B47B009892B6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6030DC72673B47B009892B6 /* ViewController.swift */; };
-		F6030DCB2673B47B009892B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6030DC92673B47B009892B6 /* Main.storyboard */; };
 		F6030DCD2673B47C009892B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6030DCC2673B47C009892B6 /* Assets.xcassets */; };
-		F6030DD02673B47C009892B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6030DCE2673B47C009892B6 /* LaunchScreen.storyboard */; };
+		F6030DF32673B7B8009892B6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6030DDB2673B7B7009892B6 /* User.swift */; };
+		F6030DF42673B7B8009892B6 /* ScooterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6030DDC2673B7B7009892B6 /* ScooterModel.swift */; };
+		F6030DF52673B7B8009892B6 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6030DDD2673B7B7009892B6 /* UserModel.swift */; };
+		F6030DF62673B7B8009892B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6030DDF2673B7B7009892B6 /* Main.storyboard */; };
+		F6030DF72673B7B8009892B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6030DE22673B7B7009892B6 /* LaunchScreen.storyboard */; };
+		F6030DFA2673B7B8009892B6 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6030DE72673B7B7009892B6 /* RegisterVC.swift */; };
+		F6030DFB2673B7B8009892B6 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6030DE82673B7B7009892B6 /* LoginVC.swift */; };
+		F6030DFC2673B7B8009892B6 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6030DE92673B7B7009892B6 /* MapVC.swift */; };
+		F6030DFE2673B7B8009892B6 /* ScooterLocationsLoop.gpx in Resources */ = {isa = PBXBuildFile; fileRef = F6030DEC2673B7B8009892B6 /* ScooterLocationsLoop.gpx */; };
+		F6030DFF2673B7B8009892B6 /* Scooters.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6030DED2673B7B8009892B6 /* Scooters.plist */; };
+		F6030E012673B7B8009892B6 /* ScooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6030DF02673B7B8009892B6 /* ScooterView.swift */; };
+		F6030E022673B7B8009892B6 /* ClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6030DF12673B7B8009892B6 /* ClusterView.swift */; };
+		F6030E042673B9A0009892B6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F6030E032673B9A0009892B6 /* GoogleService-Info.plist */; };
 		FC7DA5D50EEF76440C37C6DA /* Pods_DisertatieEnachescuRobert.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0D1050486E9B13304220D4F /* Pods_DisertatieEnachescuRobert.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,11 +33,21 @@
 		F6030DC02673B47B009892B6 /* DisertatieEnachescuRobert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DisertatieEnachescuRobert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6030DC32673B47B009892B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F6030DC52673B47B009892B6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F6030DC72673B47B009892B6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F6030DCA2673B47B009892B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F6030DCC2673B47C009892B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F6030DCF2673B47C009892B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F6030DD12673B47C009892B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F6030DDB2673B7B7009892B6 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F6030DDC2673B7B7009892B6 /* ScooterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScooterModel.swift; sourceTree = "<group>"; };
+		F6030DDD2673B7B7009892B6 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		F6030DE02673B7B7009892B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F6030DE32673B7B7009892B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F6030DE72673B7B7009892B6 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		F6030DE82673B7B7009892B6 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		F6030DE92673B7B7009892B6 /* MapVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
+		F6030DEC2673B7B8009892B6 /* ScooterLocationsLoop.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ScooterLocationsLoop.gpx; sourceTree = "<group>"; };
+		F6030DED2673B7B8009892B6 /* Scooters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Scooters.plist; sourceTree = "<group>"; };
+		F6030DF02673B7B8009892B6 /* ScooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScooterView.swift; sourceTree = "<group>"; };
+		F6030DF12673B7B8009892B6 /* ClusterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterView.swift; sourceTree = "<group>"; };
+		F6030E032673B9A0009892B6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +68,6 @@
 				DE88A553A2055A0FF062CFBE /* Pods-DisertatieEnachescuRobert.debug.xcconfig */,
 				65F1DF148F37134D70FEB610 /* Pods-DisertatieEnachescuRobert.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -81,15 +100,73 @@
 		F6030DC22673B47B009892B6 /* DisertatieEnachescuRobert */ = {
 			isa = PBXGroup;
 			children = (
-				F6030DC32673B47B009892B6 /* AppDelegate.swift */,
-				F6030DC52673B47B009892B6 /* SceneDelegate.swift */,
-				F6030DC72673B47B009892B6 /* ViewController.swift */,
-				F6030DC92673B47B009892B6 /* Main.storyboard */,
+				F6030DE62673B7B7009892B6 /* Controllers */,
+				F6030DD72673B7B7009892B6 /* Models */,
+				F6030DE12673B7B7009892B6 /* Other */,
+				F6030DDE2673B7B7009892B6 /* Storyboards */,
+				F6030DEA2673B7B8009892B6 /* Supporting Files */,
+				F6030DEF2673B7B8009892B6 /* Views */,
 				F6030DCC2673B47C009892B6 /* Assets.xcassets */,
-				F6030DCE2673B47C009892B6 /* LaunchScreen.storyboard */,
 				F6030DD12673B47C009892B6 /* Info.plist */,
 			);
 			path = DisertatieEnachescuRobert;
+			sourceTree = "<group>";
+		};
+		F6030DD72673B7B7009892B6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F6030DDB2673B7B7009892B6 /* User.swift */,
+				F6030DDC2673B7B7009892B6 /* ScooterModel.swift */,
+				F6030DDD2673B7B7009892B6 /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F6030DDE2673B7B7009892B6 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				F6030DDF2673B7B7009892B6 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		F6030DE12673B7B7009892B6 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				F6030DE22673B7B7009892B6 /* LaunchScreen.storyboard */,
+				F6030DC32673B47B009892B6 /* AppDelegate.swift */,
+				F6030DC52673B47B009892B6 /* SceneDelegate.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		F6030DE62673B7B7009892B6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F6030DE72673B7B7009892B6 /* RegisterVC.swift */,
+				F6030DE82673B7B7009892B6 /* LoginVC.swift */,
+				F6030DE92673B7B7009892B6 /* MapVC.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F6030DEA2673B7B8009892B6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F6030E032673B9A0009892B6 /* GoogleService-Info.plist */,
+				F6030DEC2673B7B8009892B6 /* ScooterLocationsLoop.gpx */,
+				F6030DED2673B7B8009892B6 /* Scooters.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F6030DEF2673B7B8009892B6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F6030DF02673B7B8009892B6 /* ScooterView.swift */,
+				F6030DF12673B7B8009892B6 /* ClusterView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,9 +228,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6030DD02673B47C009892B6 /* LaunchScreen.storyboard in Resources */,
 				F6030DCD2673B47C009892B6 /* Assets.xcassets in Resources */,
-				F6030DCB2673B47B009892B6 /* Main.storyboard in Resources */,
+				F6030DFF2673B7B8009892B6 /* Scooters.plist in Resources */,
+				F6030DF72673B7B8009892B6 /* LaunchScreen.storyboard in Resources */,
+				F6030DFE2673B7B8009892B6 /* ScooterLocationsLoop.gpx in Resources */,
+				F6030DF62673B7B8009892B6 /* Main.storyboard in Resources */,
+				F6030E042673B9A0009892B6 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,27 +286,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6030DC82673B47B009892B6 /* ViewController.swift in Sources */,
+				F6030DF32673B7B8009892B6 /* User.swift in Sources */,
 				F6030DC42673B47B009892B6 /* AppDelegate.swift in Sources */,
+				F6030DF42673B7B8009892B6 /* ScooterModel.swift in Sources */,
+				F6030DFB2673B7B8009892B6 /* LoginVC.swift in Sources */,
+				F6030DFC2673B7B8009892B6 /* MapVC.swift in Sources */,
+				F6030E012673B7B8009892B6 /* ScooterView.swift in Sources */,
+				F6030DF52673B7B8009892B6 /* UserModel.swift in Sources */,
+				F6030DFA2673B7B8009892B6 /* RegisterVC.swift in Sources */,
 				F6030DC62673B47B009892B6 /* SceneDelegate.swift in Sources */,
+				F6030E022673B7B8009892B6 /* ClusterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F6030DC92673B47B009892B6 /* Main.storyboard */ = {
+		F6030DDF2673B7B7009892B6 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F6030DCA2673B47B009892B6 /* Base */,
+				F6030DE02673B7B7009892B6 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		F6030DCE2673B47C009892B6 /* LaunchScreen.storyboard */ = {
+		F6030DE22673B7B7009892B6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F6030DCF2673B47C009892B6 /* Base */,
+				F6030DE32673B7B7009892B6 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

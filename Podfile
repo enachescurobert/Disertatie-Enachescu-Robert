@@ -5,7 +5,7 @@ target 'DisertatieEnachescuRobert' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for Licenta Enachescu Robert
+  # Pods for DisertatieEnachescuRobert
   pod 'Firebase'
   pod 'Firebase/Core'
   pod 'Firebase/Database'

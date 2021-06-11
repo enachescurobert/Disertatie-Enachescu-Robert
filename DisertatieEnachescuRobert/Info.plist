@@ -20,6 +20,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>We will use your location to give you the distance and directions to our scooters.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>We will use your location to give you the distance and directions to our scooters.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
