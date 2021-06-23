@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 import MapKit
 
-enum VehicleType {
+enum VehicleType: String {
     case car
     case moped
     case scooter

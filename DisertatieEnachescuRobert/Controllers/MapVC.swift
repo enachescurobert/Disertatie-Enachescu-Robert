@@ -133,6 +133,13 @@ class MapVC: UIViewController {
     @IBAction func stopBtnPressed(_ sender: Any) {
         AlertManager.shared.showAlertWithCancelOption(vc: self, title: "Warning", message: "Are you sure you want to stop the engine and end the trip?", handler: {
             AlertManager.shared.showAlertMessage(vc: self, title: "Thank you for your trip.",message: "Total: \(self.totalToPay ?? 0)$. Money will be extracted from your credit card. Have a nice day!", handler: {
+                
+                if let user = self.user {
+                    FirebaseManager.shared.saveTrip(of: user, vehicleType: self.selectedVehicleType ?? .unidentified, totalPrice: self.totalToPay ?? 0, totalTimeSpent: self.timePassedLbl.text ?? "00:00:00", vc: self)
+                } else {
+                    AlertManager.shared.showAlertMessage(vc: self, message: "User has some issues.", handler: {})
+                }
+                
                 self.stopTheTimer()
                 self.isEngineOn = false
                 self.totalToPay = nil

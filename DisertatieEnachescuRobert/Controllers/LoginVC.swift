@@ -27,7 +27,8 @@ class LoginVC: UIViewController {
         // Remove the user if he logs out of the system
         let listener = Auth.auth().addStateDidChangeListener{
             auth, user in
-            if user != nil {
+            if let user = user {
+                self.user = User(uid: user.uid, email: user.email ?? "")
                 self.performSegue(withIdentifier: self.loginToMap, sender: nil)
             }
         }

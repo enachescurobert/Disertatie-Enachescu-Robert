@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import UIKit
 
 struct FirebaseManager {
     // Singleton Instance
@@ -41,5 +42,27 @@ struct FirebaseManager {
 
     func fetchVehicles() -> [Vehicle] {
         return createVehicles()
+    }
+    
+    func saveTrip(of user: User, vehicleType: VehicleType, totalPrice: Double, totalTimeSpent: String, vc: UIViewController) {
+        let database = Database.database(url: "https://disertatieenachescurobert-default-rtdb.europe-west1.firebasedatabase.app")
+        let usersRef = database.reference(withPath: "users")
+        let userRef = usersRef.child(user.uid)
+        let tripsRef = userRef.child("trips")
+        let currentTrip = tripsRef.childByAutoId()
+        
+        let values: [String:Any] = [
+            "userEmail": user.email,
+            "userUid": user.uid,
+            "vehicle": vehicleType.rawValue,
+            "totalPrice": "\(totalPrice)$",
+            "totalTimeSpent": totalTimeSpent
+        ]
+        currentTrip.setValue(values) { error, databaseReference in
+            guard let error = error else {
+                return
+            }
+            AlertManager.shared.showAlertMessage(vc: vc, message: error.localizedDescription, handler: {})
+        }
     }
 }
