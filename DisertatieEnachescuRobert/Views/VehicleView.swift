@@ -17,15 +17,18 @@ class VehicleView: MKMarkerAnnotationView {
                     switch type {
                     case .scooter:
                         glyphText = "🛴"
+                        markerTintColor = .yellow.withAlphaComponent(0.2)
                     case .car:
                         glyphText = "🚗"
+                        markerTintColor = .blue.withAlphaComponent(0.2)
                     case .moped:
                         glyphText = "🛵"
+                        markerTintColor = .green.withAlphaComponent(0.2)
                     }
                 } else {
                     glyphText = "🛸"
+                    markerTintColor = .white.withAlphaComponent(0.2)
                 }
-                markerTintColor = .blue.withAlphaComponent(0.2)
                 if scooterAnnotation.shouldBeOnTopOfCluster {
                     displayPriority = .defaultHigh
                 }
