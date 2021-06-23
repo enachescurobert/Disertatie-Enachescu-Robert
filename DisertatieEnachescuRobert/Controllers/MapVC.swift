@@ -19,9 +19,13 @@ class MapVC: UIViewController {
     @IBOutlet weak var directionsTableView: UITableView!
     @IBOutlet var reservationView: UIView!
     @IBOutlet var timePassedLbl: UILabel!
+    @IBOutlet var pricePerMinuteLbl: UILabel!
+    @IBOutlet var priceForStartLbl: UILabel!
     @IBOutlet var totalPriceLbl: UILabel!
     
     // MARK: - Properties
+    typealias ElapsedTime = (hours: Int, minutes: Int, seconds: Int)
+
     var locationManager: CLLocationManager?
     var currentLocation: CLLocation?
     var user: User!
@@ -30,10 +34,46 @@ class MapVC: UIViewController {
     var polylineDirections: [MKPolyline] = []
     lazy var geocoder = CLGeocoder()
     var voice: AVSpeechSynthesizer?
-    
     var selectedVehicleId: Int?
     var isEngineOn: Bool = false
+    var timer: Timer?
+    var secondsPassed: Int = 0
+    var totalToPay: Double?
+    var selectedVehicleType: VehicleType?
+    var startOfEnginePrice: Double {
+        guard let selectedVehicleType = selectedVehicleType else {
+            return 0
+        }
+        
+        switch selectedVehicleType {
+        case .car:
+            return 5
+        case .moped:
+            return 3
+        case .scooter:
+            return 2
+        case .unidentified:
+            return 0
+        }
+    }
     
+    var priceInDollars: Double {
+        guard let selectedVehicleType = selectedVehicleType else {
+            return 0
+        }
+        
+        switch selectedVehicleType {
+        case .car:
+            return 2
+        case .moped:
+            return 1.5
+        case .scooter:
+            return 1
+        case .unidentified:
+            return 0
+        }
+    }
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
@@ -88,6 +128,19 @@ class MapVC: UIViewController {
             mapView.isHidden = true
             directionsTableView.isHidden = false
         }
+    }
+    
+    @IBAction func stopBtnPressed(_ sender: Any) {
+        AlertManager.shared.showAlertWithCancelOption(vc: self, title: "Warning", message: "Are you sure you want to stop the engine and end the trip?", handler: {
+            AlertManager.shared.showAlertMessage(vc: self, title: "Thank you for your trip.",message: "Total: \(self.totalToPay ?? 0)$. Money will be extracted from your credit card. Have a nice day!", handler: {
+                self.stopTheTimer()
+                self.isEngineOn = false
+                self.totalToPay = nil
+                DispatchQueue.main.async {
+                    self.reservationView.isHidden = true
+                }
+            })
+        })
     }
     
     private func produceOverlay() {
@@ -211,6 +264,33 @@ class MapVC: UIViewController {
             })
         }
     }
+    
+    private func secondsToHoursMinutesSeconds (seconds: Int) -> ElapsedTime {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+    
+    @objc private func runTimedCode() {
+        secondsPassed += 1
+        
+        let timePassed: ElapsedTime = secondsToHoursMinutesSeconds(seconds: secondsPassed)
+        
+        let priceOfPassedHours: Double = priceInDollars * Double(timePassed.hours) * 60
+        let priceOfPassedMinutes: Double = priceInDollars * Double(timePassed.minutes)
+        
+        self.totalToPay = priceOfPassedHours + priceOfPassedMinutes + startOfEnginePrice
+        
+        DispatchQueue.main.async {
+            self.timePassedLbl.text = "\(timePassed.hours):\(timePassed.minutes):\(timePassed.seconds)"
+            self.totalPriceLbl.text = "\(self.totalToPay ?? 0)$"
+            self.priceForStartLbl.text = "\(self.startOfEnginePrice)$"
+            self.pricePerMinuteLbl.text = "\(self.priceInDollars)$"
+        }
+    }
+    
+    private func stopTheTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
 }
 
 //  MARK: - CLLocationManagerDelegate
@@ -260,38 +340,30 @@ extension MapVC: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
         guard isEngineOn == false else {
-            let alert = UIAlertController(title: "Oops", message: "You have the engine on. You need to finish your ride first.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true)
+            AlertManager.shared.showAlertMessage(vc: self, message: "You have the engine on. You need to finish your ride first.", handler: {})
+
             return
         }
         
         guard let vehicleView = view as? VehicleView else { return }
         
-        if vehicleView.identifier != self.selectedVehicleId {
-            let alert = UIAlertController(title: "Vehicle selected", message: "Do you want a route to this vehicle?", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
-                self.selectedVehicleId = vehicleView.identifier
+        if vehicleView.vehicle?.id != self.selectedVehicleId {
+            AlertManager.shared.showAlertWithCancelOption(vc: self, title: "Vehicle selected", message: "Do you want a route to this vehicle?", handler: {
+                self.selectedVehicleId = vehicleView.vehicle?.id
+                self.selectedVehicleType = vehicleView.vehicle?.type
                 let destinationLocation = vehicleView.annotation?.coordinate
                 let destination: CLLocation = CLLocation(latitude: destinationLocation!.latitude, longitude: destinationLocation!.longitude)
                 self.loadDirections(destination: destination)
                 mapView.deselectAnnotation(vehicleView.annotation, animated: false)
-            }))
-            
-            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
+            })
         } else {
-            let alert = UIAlertController(title: "Vehicle selected", message: "Are you sure you want to turn the engine of this vehicle? You will be charged 0.5$ per minute.", preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+            AlertManager.shared.showAlertWithCancelOption(vc: self, title: "Vehicle selected", message: "Are you sure you want to turn on the engine of this vehicle? You will be charged \(startOfEnginePrice)$ for turning on the engine and \(priceInDollars)$ per minute after that.", handler: {
                 self.deleteOverlays()
                 self.reservationView.isHidden = false
                 self.isEngineOn = true
-            }))
-            
-            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
+                
+                self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.runTimedCode), userInfo: nil, repeats: true)
+            })
         }
     }
     

@@ -11,13 +11,13 @@ import MapKit
 
 class VehicleView: MKMarkerAnnotationView {
     
-    var identifier: Int?
+    var vehicle: Vehicle?
     
     override var annotation: MKAnnotation? {
         willSet {
             if let scooterAnnotation = newValue as? Vehicle {
                 
-                self.identifier = scooterAnnotation.id
+                self.vehicle = scooterAnnotation
                 
                 switch scooterAnnotation.type {
                 case .scooter:
