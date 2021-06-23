@@ -28,7 +28,7 @@ class MapVC: UIViewController {
 
     var locationManager: CLLocationManager?
     var currentLocation: CLLocation?
-    var user: User!
+    var user: User?
     var vehicles: [Vehicle] = []
     var travelDirections: [String] = []
     var polylineDirections: [MKPolyline] = []

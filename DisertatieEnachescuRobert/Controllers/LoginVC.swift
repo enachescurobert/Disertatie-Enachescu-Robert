@@ -17,6 +17,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordTF: UITextField!
     
     //  MARK: - Properties
+    var user: User?
     let loginToMap = "loginToMap"
     
     //  MARK: - Lifecycle
@@ -33,31 +34,32 @@ class LoginVC: UIViewController {
         Auth.auth().removeStateDidChangeListener(listener)
     }
     
-    //  MARK: - IBActions
-    @IBAction func loginDidTouch(_ sender: Any) {
-        if loginTF.text == "" || passwordTF.text == "" {
-            showAlert(titleToShow: "Error", messageToShow: "You must fill out all fields")
-        } else {
-            Auth.auth().signIn(withEmail: loginTF.text!, password: passwordTF.text!, completion: {
-                authDataResult, error in
-                if error != nil {
-                    self.showAlert(titleToShow: "Error", messageToShow: "Error: \(error?.localizedDescription ?? "error")")
-                }
-                
-                if authDataResult != nil {
-                    self.performSegue(withIdentifier: self.loginToMap, sender: nil)
-                }
-                
-            })
+    //  MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == loginToMap {
+            if let vc = segue.destination as? MapVC {
+                vc.user = user
+            }
         }
     }
     
-    fileprivate func showAlert(titleToShow: String, messageToShow: String) {
-        
-        let alert = UIAlertController(title: titleToShow, message: messageToShow, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-            NSLog("The \"OK\" alert occured.")
-        }))
-        self.present(alert, animated: true, completion: nil)
+    //  MARK: - IBActions
+    @IBAction func loginDidTouch(_ sender: Any) {
+        if loginTF.text == "" || passwordTF.text == "" {
+            AlertManager.shared.showAlertMessage(vc: self, message: "You must fill out all fields", handler: {})
+        } else {
+            Auth.auth().signIn(withEmail: loginTF.text!, password: passwordTF.text!, completion: {
+                authDataResult, error in
+                if let error = error {
+                    AlertManager.shared.showAlertMessage(vc: self, message: "Error: \(error.localizedDescription)", handler: {})
+                    return
+                }
+                
+                guard let authDataResult = authDataResult else { return }
+                
+                self.user = User(uid: authDataResult.user.uid, email: authDataResult.user.email ?? "")
+                self.performSegue(withIdentifier: self.loginToMap, sender: nil)
+            })
+        }
     }
 }

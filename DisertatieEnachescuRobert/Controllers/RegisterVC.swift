@@ -18,6 +18,7 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var confirmPasswordTF: UITextField!
     
     //  MARK: - Properties
+    var user: User?
     let goToMap = "goToMap"
     
     //  MARK: - Lifecycle Methods
@@ -25,14 +26,23 @@ class RegisterVC: UIViewController {
         super.viewDidLoad()
     }
     
+    //  MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == goToMap {
+            if let vc = segue.destination as? MapVC {
+                vc.user = user
+            }
+        }
+    }
+    
     //  MARK: - IBActions
     @IBAction func register(_ sender: Any) {
         if emailTF.text == "" ||
             passwordTF.text == "" ||
             confirmPasswordTF.text == "" {
-            showAlert(titleToShow: "Error", messageToShow: "You must fill out all fields.")
+            AlertManager.shared.showAlertMessage(vc: self, message: "You must fill out all fields.", handler: {})
         } else if passwordTF.text != confirmPasswordTF.text {
-            showAlert(titleToShow: "Error", messageToShow: "Passwords did not match.")
+            AlertManager.shared.showAlertMessage(vc: self, message: "Passwords did not match.", handler: {})
         } else {
             
             Auth.auth().createUser(withEmail: emailTF.text!, password: passwordTF.text!) {
@@ -43,47 +53,30 @@ class RegisterVC: UIViewController {
                         switch errorCode {
                         case .weakPassword:
                             print("Please provice a strong password")
-                            self.showAlert(titleToShow: "ERROR", messageToShow: "Please provide a strong password")
+                            AlertManager.shared.showAlertMessage(vc: self, message: "Please provide a strong password", handler: {})
                         default:
                             print(error?.localizedDescription ?? "Error")
-                            self.showAlert(titleToShow: "ERROR", messageToShow: "Error: \(error?.localizedDescription ?? "error")")
+                            AlertManager.shared.showAlertMessage(vc: self, message: "Error: \(error?.localizedDescription ?? "error")", handler: {})
                         }
                         
                     }
                 }
                 
-                if authDataResult != nil {
-                    authDataResult?.user.sendEmailVerification() {
+                if let authDataResult = authDataResult {
+                    authDataResult.user.sendEmailVerification() {
                         error in
                         if error != nil {
-                            self.showAlert(titleToShow: "ERROR", messageToShow: "Error: \(error?.localizedDescription ?? "error")")
+                            AlertManager.shared.showAlertMessage(vc: self, message: "Error: \(error?.localizedDescription ?? "error")", handler: {})
                         } else {
                             Auth.auth().signIn(withEmail: self.emailTF.text!, password: self.passwordTF.text!)
-                            
-                            self.showAlert(titleToShow: "Done", messageToShow: "You will receive an confirmation email soon. You'll have limited access for now.", performTheSegue: true)
-                            
+                            AlertManager.shared.showAlertMessage(vc: self, title: "Done",message: "You will receive an confirmation email soon. You'll have limited access for now.", handler: {
+                                self.user = User(uid: authDataResult.user.uid, email: authDataResult.user.email ?? "")
+                                self.performSegue(withIdentifier: self.goToMap, sender: nil)
+                            })
                         }
                     }
                 }
             }
         }
-    }
-    
-    fileprivate func showAlert(titleToShow: String, messageToShow: String) {
-        let alert = UIAlertController(title: titleToShow, message: messageToShow, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-            NSLog("The \"OK\" alert occured.")
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    fileprivate func showAlert(titleToShow: String, messageToShow: String, performTheSegue: Bool) {
-        let alert = UIAlertController(title: titleToShow, message: messageToShow, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
-            if performTheSegue {
-                self.performSegue(withIdentifier: self.goToMap, sender: nil)
-            }
-        }))
-        self.present(alert, animated: true, completion: nil)
     }
 }
