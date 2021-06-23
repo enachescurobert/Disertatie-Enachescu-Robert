@@ -27,11 +27,14 @@ struct FirebaseManager {
         let scooter2: Scooter = Scooter(latitude: 44.47333, longitude: 26.11921, name: "Scooter 2", shouldBeOnTopOfCluster: true)
         let scooter3: Scooter = Scooter(latitude: 44.46343, longitude: 26.11823, name: "Scooter 3", shouldBeOnTopOfCluster: false)
         
+        let ufo1: Vehicle = Vehicle(latitude: 44.45343, longitude: 26.12323, name: "OZN 1", shouldBeOnTopOfCluster: false)
+        
         let cars: [Car] = [car1, car2, car3]
         let mopeds: [Moped] = [moped1, moped2, moped3, moped4]
         let scooters: [Scooter] = [scooter1, scooter2, scooter3]
+        let ufos: [Vehicle] = [ufo1]
         
-        let vehicles: [Vehicle] = cars + mopeds + scooters
+        let vehicles: [Vehicle] = cars + mopeds + scooters + ufos
         
         return vehicles
     }

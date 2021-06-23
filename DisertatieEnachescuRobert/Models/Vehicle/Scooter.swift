@@ -10,7 +10,7 @@ import Foundation
 class Scooter: Vehicle {
     override init(latitude: Double, longitude: Double, name: String, shouldBeOnTopOfCluster: Bool) {
         super.init(latitude: latitude, longitude: longitude, name: name, shouldBeOnTopOfCluster: shouldBeOnTopOfCluster)
-        imageName = "moped.png"
+        imageName = "scooter.png"
         type = .scooter
     }
 }

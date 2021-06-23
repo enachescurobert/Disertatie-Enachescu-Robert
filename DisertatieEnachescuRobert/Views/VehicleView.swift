@@ -13,30 +13,32 @@ class VehicleView: MKMarkerAnnotationView {
     override var annotation: MKAnnotation? {
         willSet {
             if let scooterAnnotation = newValue as? Vehicle {
-                if let type = scooterAnnotation.type {
-                    switch type {
-                    case .scooter:
-                        glyphText = "🛴"
-                        markerTintColor = .yellow.withAlphaComponent(0.2)
-                    case .car:
-                        glyphText = "🚗"
-                        markerTintColor = .blue.withAlphaComponent(0.2)
-                    case .moped:
-                        glyphText = "🛵"
-                        markerTintColor = .green.withAlphaComponent(0.2)
-                    }
-                } else {
+                
+                switch scooterAnnotation.type {
+                case .scooter:
+                    glyphText = "🛴"
+                    markerTintColor = .yellow.withAlphaComponent(0.2)
+                case .car:
+                    glyphText = "🚗"
+                    markerTintColor = .blue.withAlphaComponent(0.2)
+                case .moped:
+                    glyphText = "🛵"
+                    markerTintColor = .green.withAlphaComponent(0.2)
+                default:
                     glyphText = "🛸"
                     markerTintColor = .white.withAlphaComponent(0.2)
                 }
+                
                 if scooterAnnotation.shouldBeOnTopOfCluster {
                     displayPriority = .defaultHigh
                 }
                 clusteringIdentifier = MKMapViewDefaultClusterAnnotationViewReuseIdentifier
                 rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
                 canShowCallout = true
-                let image = UIImage(named: scooterAnnotation.imageName)
-                let imageView = UIImageView(image: image)
+                guard let image = UIImage(named: scooterAnnotation.imageName) else {
+                    return
+                }
+                let imageView = UIImageView(image: image.resized(to: CGSize(width: 50, height: 50)))
                 detailCalloutAccessoryView = imageView
             }
         }
