@@ -190,13 +190,29 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DirectionCell" id="m94-lQ-Ieq">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DirectionCell" rowHeight="83" id="m94-lQ-Ieq" customClass="DirectionCell" customModule="DisertatieEnachescuRobert" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="83"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="m94-lQ-Ieq" id="Meh-xk-dlm">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="83"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUJ-mg-RPz">
+                                                    <rect key="frame" x="40" y="34.5" width="334" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dUJ-mg-RPz" firstAttribute="centerX" secondItem="Meh-xk-dlm" secondAttribute="centerX" id="Bql-2u-jUj"/>
+                                                <constraint firstItem="dUJ-mg-RPz" firstAttribute="leading" secondItem="Meh-xk-dlm" secondAttribute="leadingMargin" constant="20" id="GiE-Q9-DS2"/>
+                                                <constraint firstItem="dUJ-mg-RPz" firstAttribute="centerY" secondItem="Meh-xk-dlm" secondAttribute="centerY" id="gaj-js-IxS"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLbl" destination="dUJ-mg-RPz" id="8VE-jW-Ipd"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

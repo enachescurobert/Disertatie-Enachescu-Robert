@@ -135,7 +135,8 @@ class MapVC: UIViewController {
                 formatter.units = .metric
                 for step in route.steps {
                     let distance = formatter.string(fromDistance: step.distance)
-                    self?.travelDirections.append(step.instructions + " (\(distance)")
+                    let instructions = step.instructions.isEmpty ? "Start" : step.instructions
+                    self?.travelDirections.append(instructions + " (\(distance))")
                 }
                 self?.directionsTableView.reloadData()
             }
@@ -295,8 +296,10 @@ extension MapVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DirectionCell", for: indexPath)
-        cell.textLabel?.text = travelDirections[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: DirectionCell.identifier, for: indexPath) as? DirectionCell else {
+            return UITableViewCell()
+        }
+        cell.titleLbl.text = travelDirections[indexPath.row]
         return cell
     }
 }

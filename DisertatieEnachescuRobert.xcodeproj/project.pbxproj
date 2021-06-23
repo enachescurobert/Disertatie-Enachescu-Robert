@@ -25,6 +25,7 @@
 		F63DFD0D2683696600473619 /* Scooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63DFD0C2683696600473619 /* Scooter.swift */; };
 		F63DFD0F2683697000473619 /* Moped.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63DFD0E2683697000473619 /* Moped.swift */; };
 		F63DFD122683785600473619 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63DFD112683785600473619 /* UIImage+Extension.swift */; };
+		F63DFD1526837A7200473619 /* DirectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63DFD1426837A7200473619 /* DirectionCell.swift */; };
 		FC7DA5D50EEF76440C37C6DA /* Pods_DisertatieEnachescuRobert.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0D1050486E9B13304220D4F /* Pods_DisertatieEnachescuRobert.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		F63DFD0C2683696600473619 /* Scooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scooter.swift; sourceTree = "<group>"; };
 		F63DFD0E2683697000473619 /* Moped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moped.swift; sourceTree = "<group>"; };
 		F63DFD112683785600473619 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
+		F63DFD1426837A7200473619 /* DirectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 		F6030DEF2673B7B8009892B6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F63DFD1326837A5700473619 /* TableView */,
 				F6030DF02673B7B8009892B6 /* VehicleView.swift */,
 				F6030DF12673B7B8009892B6 /* ClusterView.swift */,
 			);
@@ -205,6 +208,14 @@
 				F63DFD112683785600473619 /* UIImage+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F63DFD1326837A5700473619 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				F63DFD1426837A7200473619 /* DirectionCell.swift */,
+			);
+			path = TableView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,6 +336,7 @@
 				F6030DF32673B7B8009892B6 /* User.swift in Sources */,
 				F63DFD122683785600473619 /* UIImage+Extension.swift in Sources */,
 				F6030DC42673B47B009892B6 /* AppDelegate.swift in Sources */,
+				F63DFD1526837A7200473619 /* DirectionCell.swift in Sources */,
 				F63DFD0F2683697000473619 /* Moped.swift in Sources */,
 				F63DFD072683621900473619 /* FirebaseManager.swift in Sources */,
 				F6030DF42673B7B8009892B6 /* Vehicle.swift in Sources */,
