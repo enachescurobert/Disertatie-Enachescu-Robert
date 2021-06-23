@@ -44,34 +44,14 @@ class MapVC: UIViewController {
         guard let selectedVehicleType = selectedVehicleType else {
             return 0
         }
-        
-        switch selectedVehicleType {
-        case .car:
-            return 5
-        case .moped:
-            return 3
-        case .scooter:
-            return 2
-        case .unidentified:
-            return 0
-        }
+        return selectedVehicleType.getStartOfEnginePrice()
     }
     
-    var priceInDollars: Double {
+    var pricePerMinute: Double {
         guard let selectedVehicleType = selectedVehicleType else {
             return 0
         }
-        
-        switch selectedVehicleType {
-        case .car:
-            return 2
-        case .moped:
-            return 1.5
-        case .scooter:
-            return 1
-        case .unidentified:
-            return 0
-        }
+        return selectedVehicleType.getPricePerMinute()
     }
         
     override func viewDidLoad() {
@@ -281,8 +261,8 @@ class MapVC: UIViewController {
         
         let timePassed: ElapsedTime = secondsToHoursMinutesSeconds(seconds: secondsPassed)
         
-        let priceOfPassedHours: Double = priceInDollars * Double(timePassed.hours) * 60
-        let priceOfPassedMinutes: Double = priceInDollars * Double(timePassed.minutes)
+        let priceOfPassedHours: Double = pricePerMinute * Double(timePassed.hours) * 60
+        let priceOfPassedMinutes: Double = pricePerMinute * Double(timePassed.minutes)
         
         self.totalToPay = priceOfPassedHours + priceOfPassedMinutes + startOfEnginePrice
         
@@ -290,7 +270,7 @@ class MapVC: UIViewController {
             self.timePassedLbl.text = "\(timePassed.hours):\(timePassed.minutes):\(timePassed.seconds)"
             self.totalPriceLbl.text = "\(self.totalToPay ?? 0)$"
             self.priceForStartLbl.text = "\(self.startOfEnginePrice)$"
-            self.pricePerMinuteLbl.text = "\(self.priceInDollars)$"
+            self.pricePerMinuteLbl.text = "\(self.pricePerMinute)$"
         }
     }
     
@@ -364,7 +344,7 @@ extension MapVC: MKMapViewDelegate {
                 mapView.deselectAnnotation(vehicleView.annotation, animated: false)
             })
         } else {
-            AlertManager.shared.showAlertWithCancelOption(vc: self, title: "Vehicle selected", message: "Are you sure you want to turn on the engine of this vehicle? You will be charged \(startOfEnginePrice)$ for turning on the engine and \(priceInDollars)$ per minute after that.", handler: {
+            AlertManager.shared.showAlertWithCancelOption(vc: self, title: "Vehicle selected", message: "Are you sure you want to turn on the engine of this vehicle? You will be charged \(startOfEnginePrice)$ for turning on the engine and \(pricePerMinute)$ per minute after that.", handler: {
                 self.deleteOverlays()
                 self.reservationView.isHidden = false
                 self.isEngineOn = true

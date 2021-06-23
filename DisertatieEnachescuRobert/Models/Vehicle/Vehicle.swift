@@ -15,6 +15,32 @@ enum VehicleType: String {
     case moped
     case scooter
     case unidentified
+    
+    func getStartOfEnginePrice() -> Double {
+        switch self {
+        case .car:
+            return 5
+        case .moped:
+            return 3
+        case .scooter:
+            return 2
+        case .unidentified:
+            return 0
+        }
+    }
+    
+    func getPricePerMinute() -> Double {
+        switch self {
+        case .car:
+            return 2
+        case .moped:
+            return 1.5
+        case .scooter:
+            return 1
+        case .unidentified:
+            return 0
+        }
+    }
 }
 
 class Vehicle: NSObject {
