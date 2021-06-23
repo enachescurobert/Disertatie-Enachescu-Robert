@@ -32,6 +32,7 @@ class MapVC: UIViewController {
     var voice: AVSpeechSynthesizer?
     
     var selectedVehicleId: Int?
+    var isEngineOn: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,12 +127,7 @@ class MapVC: UIViewController {
             if let route = response?.routes.first {
                 
                 /// Delete the old polyline if a new one will be created
-                let overlays = self!.mapView.overlays
-                for overlay in overlays {
-                    if overlay is MKPolyline {
-                        self!.mapView.removeOverlay(overlay)
-                    }
-                }
+                self?.deleteOverlays()
                 
                 self?.mapView.addOverlay(route.polyline)
                 
@@ -183,6 +179,16 @@ class MapVC: UIViewController {
     private func updateUI() {
         vehicles = FirebaseManager.shared.fetchVehicles()
         printAddress()
+    }
+    
+    private func deleteOverlays() {
+        /// Delete the old polyline if a new one will be created
+        let overlays = self.mapView.overlays
+        for overlay in overlays {
+            if overlay is MKPolyline {
+                self.mapView.removeOverlay(overlay)
+            }
+        }
     }
     
     private func printAddress() {
@@ -253,17 +259,40 @@ extension MapVC: CLLocationManagerDelegate {
 extension MapVC: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
-        let alert = UIAlertController(title: "Vehicle selected", message: "Do you want a route to this vehicle?", preferredStyle: .alert)
+        guard isEngineOn == false else {
+            let alert = UIAlertController(title: "Oops", message: "You have the engine on. You need to finish your ride first.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true)
+            return
+        }
         
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
-            let destinationLocation = view.annotation?.coordinate
-            let destination: CLLocation = CLLocation(latitude: destinationLocation!.latitude, longitude: destinationLocation!.longitude)
-            self.loadDirections(destination: destination)
-            mapView.deselectAnnotation(view.annotation, animated: false)
-        }))
+        guard let vehicleView = view as? VehicleView else { return }
         
-        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
+        if vehicleView.identifier != self.selectedVehicleId {
+            let alert = UIAlertController(title: "Vehicle selected", message: "Do you want a route to this vehicle?", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+                self.selectedVehicleId = vehicleView.identifier
+                let destinationLocation = vehicleView.annotation?.coordinate
+                let destination: CLLocation = CLLocation(latitude: destinationLocation!.latitude, longitude: destinationLocation!.longitude)
+                self.loadDirections(destination: destination)
+                mapView.deselectAnnotation(vehicleView.annotation, animated: false)
+            }))
+            
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        } else {
+            let alert = UIAlertController(title: "Vehicle selected", message: "Are you sure you want to turn the engine of this vehicle? You will be charged 0.5$ per minute.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+                self.deleteOverlays()
+                self.reservationView.isHidden = false
+                self.isEngineOn = true
+            }))
+            
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {

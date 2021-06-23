@@ -10,9 +10,14 @@ import UIKit
 import MapKit
 
 class VehicleView: MKMarkerAnnotationView {
+    
+    var identifier: Int?
+    
     override var annotation: MKAnnotation? {
         willSet {
             if let scooterAnnotation = newValue as? Vehicle {
+                
+                self.identifier = scooterAnnotation.id
                 
                 switch scooterAnnotation.type {
                 case .scooter:
