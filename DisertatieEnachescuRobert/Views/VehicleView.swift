@@ -25,7 +25,7 @@ class VehicleView: MKMarkerAnnotationView {
                 } else {
                     glyphText = "🛸"
                 }
-                markerTintColor = UIColor(displayP3Red: 0.082, green: 0.518, blue: 0.263, alpha: 1.0)
+                markerTintColor = .blue.withAlphaComponent(0.2)
                 if scooterAnnotation.shouldBeOnTopOfCluster {
                     displayPriority = .defaultHigh
                 }
