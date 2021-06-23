@@ -1,5 +1,5 @@
 //
-//  ScooterModel.swift
+//  Vehicul.swift
 //  DisertatieEnachescuRobert
 //
 //  Created by Robert Enachescu on 22/01/2020.
@@ -10,22 +10,27 @@ import Foundation
 import CoreLocation
 import MapKit
 
-class ScooterModel: NSObject {
-    
+enum VehicleType {
+    case car
+    case moped
+    case scooter
+}
+
+class Vehicle: NSObject {
     let location: CLLocation
     let name: String
-    let imageName: String
     let shouldBeOnTopOfCluster: Bool
+    var imageName: String = "moped.png"
+    var type: VehicleType?
     
-    init(latitude: Double, longitude: Double, name: String, imageName: String, shouldBeOnTopOfCluster: Bool) {
+    init(latitude: Double, longitude: Double, name: String, shouldBeOnTopOfCluster: Bool) {
         self.location = CLLocation(latitude: latitude, longitude: longitude)
         self.name = name
-        self.imageName = imageName
         self.shouldBeOnTopOfCluster = shouldBeOnTopOfCluster
     }
 }
 
-extension ScooterModel: MKAnnotation {
+extension Vehicle: MKAnnotation {
     var coordinate: CLLocationCoordinate2D {
         get {
             return location.coordinate

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MapVC.swift
 //  DisertatieEnachescuRobert
 //
 //  Created by Robert Enachescu on 18/01/2020.
@@ -22,7 +22,7 @@ class MapVC: UIViewController {
     var locationManager: CLLocationManager?
     var currentLocation: CLLocation?
     var user: User!
-    var scooters: [ScooterModel] = []
+    var vehicles: [Vehicle] = []
     var travelDirections: [String] = []
     var polylineDirections: [MKPolyline] = []
     lazy var geocoder = CLGeocoder()
@@ -49,8 +49,8 @@ class MapVC: UIViewController {
         
         updateUI()
         
-        mapView.addAnnotations(scooters)
-        mapView.register(ScooterView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        mapView.addAnnotations(vehicles)
+        mapView.register(VehicleView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         mapView.register(ClusterView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
         
         if CLLocationManager.authorizationStatus() == .authorizedAlways || CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
@@ -165,8 +165,8 @@ class MapVC: UIViewController {
     
     private func activateLocationServices() {
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-            for scooter in scooters {
-                let region = CLCircularRegion(center: scooter.location.coordinate, radius: 500, identifier: scooter.name)
+            for vehicle in vehicles {
+                let region = CLCircularRegion(center: vehicle.location.coordinate, radius: 500, identifier: vehicle.name)
                 region.notifyOnEntry = true
                 locationManager?.startMonitoring(for: region)
             }
@@ -175,40 +175,13 @@ class MapVC: UIViewController {
     }
     
     private func updateUI() {
-        loadScooters()
+        vehicles = FirebaseManager.shared.fetchVehicles()
         printAddress()
     }
     
-    private func loadScooters() {
-        guard let entries = loadPlist() else {
-            fatalError("Unable to load data")
-        }
-        
-        for property in entries {
-            guard let name = property["Name"] as? String,
-                  let latitude = property["Latitude"] as? NSNumber,
-                  let longitude = property["Longitude"] as? NSNumber,
-                  let image = property["Image"] as? String else {
-                fatalError("Error reading data")
-            }
-            print("name: \(name)")
-            print("latitude: \(latitude)")
-            print("longitude: \(longitude)")
-            print("image: \(image)")
-            print("")
-            
-            var shouldBeOnTopOfCluster = false
-            if property["shouldBeOnTopOfCluster"] != nil {
-                shouldBeOnTopOfCluster = property["shouldBeOnTopOfCluster"] as? Bool ?? false
-            }
-            let scooter = ScooterModel(latitude: latitude.doubleValue, longitude: longitude.doubleValue, name: name, imageName: image, shouldBeOnTopOfCluster: shouldBeOnTopOfCluster)
-            scooters.append(scooter)
-        }
-    }
-    
     private func printAddress() {
-        for scooter in scooters {
-            geocoder.reverseGeocodeLocation(scooter.location, completionHandler: {
+        for vehicle in vehicles {
+            geocoder.reverseGeocodeLocation(vehicle.location, completionHandler: {
                 (placemarks, error) in
                 if let error = error {
                     print(error.localizedDescription)
@@ -226,20 +199,6 @@ class MapVC: UIViewController {
             })
         }
     }
-    
-    private func loadPlist() -> [[String: Any]]? {
-        guard let plistUrl = Bundle.main.url(forResource: "Scooters", withExtension: "plist"),
-              let plistData = try? Data(contentsOf: plistUrl) else { return nil }
-        var placedEntries: [[String: Any]]? = nil
-        
-        do {
-            placedEntries = try PropertyListSerialization.propertyList(from: plistData, options: [], format: nil) as? [[String: Any]]
-        } catch {
-            print("error reading plist")
-        }
-        return placedEntries
-    }
-    
 }
 
 //  MARK: - CLLocationManagerDelegate
@@ -252,7 +211,7 @@ extension MapVC: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         if presentingViewController == nil {
-            let alertController = UIAlertController(title: "Scooter nearby", message: "You are near the \(region.identifier). Go ahead, let's drive a little!", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Vehicle nearby", message: "You are near the \(region.identifier). Go ahead, let's drive a little!", preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "OK", style: .default, handler: {
                 [weak self] action in
                 self?.dismiss(animated: true, completion: nil)
@@ -288,7 +247,7 @@ extension MapVC: CLLocationManagerDelegate {
 extension MapVC: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         
-        let alert = UIAlertController(title: "Scooter selected", message: "Do you want a route to this scooter?", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Vehicle selected", message: "Do you want a route to this vehicle?", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
             let destinationLocation = view.annotation?.coordinate
