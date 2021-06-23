@@ -96,7 +96,7 @@ class MapVC: UIViewController {
         mapView.addOverlay(polygon)
     }
     
-    private func loadDirections(destination:CLLocation?) {
+    private func loadDirections(destination: CLLocation?) {
         
         if travelDirections.count != 0 {
             self.travelDirections.removeAll()
