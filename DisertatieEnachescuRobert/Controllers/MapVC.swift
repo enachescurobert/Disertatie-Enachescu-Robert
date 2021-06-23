@@ -17,6 +17,9 @@ class MapVC: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var directionsTableView: UITableView!
+    @IBOutlet var reservationView: UIView!
+    @IBOutlet var timePassedLbl: UILabel!
+    @IBOutlet var totalPriceLbl: UILabel!
     
     // MARK: - Properties
     var locationManager: CLLocationManager?
@@ -27,6 +30,8 @@ class MapVC: UIViewController {
     var polylineDirections: [MKPolyline] = []
     lazy var geocoder = CLGeocoder()
     var voice: AVSpeechSynthesizer?
+    
+    var selectedVehicleId: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -281,11 +286,9 @@ extension MapVC: MKMapViewDelegate {
 //  MARK: - UITableViewDelegate
 extension MapVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         let text = travelDirections[indexPath.row]
         let utterance = AVSpeechUtterance(string: text)
         voice?.speak(utterance)
-        
     }
 }
 

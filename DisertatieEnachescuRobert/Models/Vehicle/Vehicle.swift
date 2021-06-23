@@ -18,13 +18,15 @@ enum VehicleType {
 }
 
 class Vehicle: NSObject {
+    let id: Int
     let location: CLLocation
     let name: String
     let shouldBeOnTopOfCluster: Bool
     var imageName: String = "ufo.png"
     var type: VehicleType = .unidentified
     
-    init(latitude: Double, longitude: Double, name: String, shouldBeOnTopOfCluster: Bool) {
+    init(id: Int, latitude: Double, longitude: Double, name: String, shouldBeOnTopOfCluster: Bool) {
+        self.id = id
         self.location = CLLocation(latitude: latitude, longitude: longitude)
         self.name = name
         self.shouldBeOnTopOfCluster = shouldBeOnTopOfCluster

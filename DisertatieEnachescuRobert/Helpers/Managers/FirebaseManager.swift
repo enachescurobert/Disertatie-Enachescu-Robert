@@ -14,20 +14,20 @@ struct FirebaseManager {
     static let shared = FirebaseManager()
     
     func createVehicles() -> [Vehicle] {
-        let car1: Car = Car(latitude: 44.48066, longitude: 26.11528, name: "Car 1", shouldBeOnTopOfCluster: false)
-        let car2: Car = Car(latitude: 44.47166, longitude: 26.11528, name: "Car 2", shouldBeOnTopOfCluster: true)
-        let car3: Car = Car(latitude: 44.45066, longitude: 26.12528, name: "Car 3", shouldBeOnTopOfCluster: false)
+        let car1: Car = Car(id: 1, latitude: 44.48066, longitude: 26.11528, name: "Car 1", shouldBeOnTopOfCluster: false)
+        let car2: Car = Car(id: 2, latitude: 44.47166, longitude: 26.11528, name: "Car 2", shouldBeOnTopOfCluster: true)
+        let car3: Car = Car(id: 3, latitude: 44.45066, longitude: 26.12528, name: "Car 3", shouldBeOnTopOfCluster: false)
         
-        let moped1: Moped = Moped(latitude: 44.48266, longitude: 26.11328, name: "Moped 1", shouldBeOnTopOfCluster: false)
-        let moped2: Moped = Moped(latitude: 44.47321, longitude: 26.11421, name: "Moped 2", shouldBeOnTopOfCluster: false)
-        let moped3: Moped = Moped(latitude: 44.46221, longitude: 26.11521, name: "Moped 3", shouldBeOnTopOfCluster: true)
-        let moped4: Moped = Moped(latitude: 44.45843, longitude: 26.11821, name: "Moped 4", shouldBeOnTopOfCluster: false)
+        let moped1: Moped = Moped(id: 4, latitude: 44.48266, longitude: 26.11328, name: "Moped 1", shouldBeOnTopOfCluster: false)
+        let moped2: Moped = Moped(id: 5, latitude: 44.47321, longitude: 26.11421, name: "Moped 2", shouldBeOnTopOfCluster: false)
+        let moped3: Moped = Moped(id: 6, latitude: 44.46221, longitude: 26.11521, name: "Moped 3", shouldBeOnTopOfCluster: true)
+        let moped4: Moped = Moped(id: 7, latitude: 44.45843, longitude: 26.11821, name: "Moped 4", shouldBeOnTopOfCluster: false)
         
-        let scooter1: Scooter = Scooter(latitude: 44.45333, longitude: 26.11821, name: "Scooter 1", shouldBeOnTopOfCluster: false)
-        let scooter2: Scooter = Scooter(latitude: 44.47333, longitude: 26.11921, name: "Scooter 2", shouldBeOnTopOfCluster: true)
-        let scooter3: Scooter = Scooter(latitude: 44.46343, longitude: 26.11823, name: "Scooter 3", shouldBeOnTopOfCluster: false)
+        let scooter1: Scooter = Scooter(id: 8, latitude: 44.45333, longitude: 26.11821, name: "Scooter 1", shouldBeOnTopOfCluster: false)
+        let scooter2: Scooter = Scooter(id: 9, latitude: 44.47333, longitude: 26.11921, name: "Scooter 2", shouldBeOnTopOfCluster: true)
+        let scooter3: Scooter = Scooter(id: 10, latitude: 44.46343, longitude: 26.11823, name: "Scooter 3", shouldBeOnTopOfCluster: false)
         
-        let ufo1: Vehicle = Vehicle(latitude: 44.45343, longitude: 26.12323, name: "OZN 1", shouldBeOnTopOfCluster: false)
+        let ufo1: Vehicle = Vehicle(id: 1996, latitude: 44.45343, longitude: 26.12323, name: "OZN 1", shouldBeOnTopOfCluster: false)
         
         let cars: [Car] = [car1, car2, car3]
         let mopeds: [Moped] = [moped1, moped2, moped3, moped4]
