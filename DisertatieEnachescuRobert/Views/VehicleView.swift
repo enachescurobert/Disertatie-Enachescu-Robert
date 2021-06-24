@@ -15,11 +15,11 @@ class VehicleView: MKMarkerAnnotationView {
     
     override var annotation: MKAnnotation? {
         willSet {
-            if let scooterAnnotation = newValue as? Vehicle {
+            if let vehicleAnnotation = newValue as? Vehicle {
                 
-                self.vehicle = scooterAnnotation
+                self.vehicle = vehicleAnnotation
                 
-                switch scooterAnnotation.type {
+                switch vehicleAnnotation.type {
                 case .scooter:
                     glyphText = "🛴"
                     markerTintColor = .yellow.withAlphaComponent(0.2)
@@ -34,13 +34,13 @@ class VehicleView: MKMarkerAnnotationView {
                     markerTintColor = .white.withAlphaComponent(0.2)
                 }
                 
-                if scooterAnnotation.shouldBeOnTopOfCluster {
+                if vehicleAnnotation.shouldBeOnTopOfCluster {
                     displayPriority = .defaultHigh
                 }
                 clusteringIdentifier = MKMapViewDefaultClusterAnnotationViewReuseIdentifier
                 rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
                 canShowCallout = true
-                guard let image = UIImage(named: scooterAnnotation.imageName) else {
+                guard let image = UIImage(named: vehicleAnnotation.imageName) else {
                     return
                 }
                 let imageView = UIImageView(image: image.resized(to: CGSize(width: 50, height: 50)))
