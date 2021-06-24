@@ -25,7 +25,7 @@ struct FirebaseManager {
         let moped4: Moped = Moped(id: 7, latitude: 44.45843, longitude: 26.11821, name: "Moped 4", shouldBeOnTopOfCluster: false)
         
         let scooter1: Scooter = Scooter(id: 8, latitude: 44.45333, longitude: 26.11821, name: "Scooter 1", shouldBeOnTopOfCluster: false)
-        let scooter2: Scooter = Scooter(id: 9, latitude: 44.47333, longitude: 26.11921, name: "Scooter 2", shouldBeOnTopOfCluster: true)
+        let scooter2: Scooter = Scooter(id: 9, latitude: 44.44333, longitude: 26.11321, name: "Scooter 2", shouldBeOnTopOfCluster: true)
         let scooter3: Scooter = Scooter(id: 10, latitude: 44.46343, longitude: 26.11823, name: "Scooter 3", shouldBeOnTopOfCluster: false)
         
         let ufo1: Vehicle = Vehicle(id: 1996, latitude: 44.45343, longitude: 26.12323, name: "OZN 1", shouldBeOnTopOfCluster: false)
