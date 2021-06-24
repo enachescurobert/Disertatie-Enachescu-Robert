@@ -39,16 +39,16 @@ class MapVC: UIViewController {
     var timer: Timer?
     var secondsPassed: Int = 0
     var totalToPay: Double?
-    var selectedVehicleType: VehicleType?
+    var selectedVehicle: Vehicle?
     var startOfEnginePrice: Double {
-        guard let selectedVehicleType = selectedVehicleType else {
+        guard let selectedVehicleType = selectedVehicle?.type else {
             return 0
         }
         return selectedVehicleType.getStartOfEnginePrice()
     }
     
     var pricePerMinute: Double {
-        guard let selectedVehicleType = selectedVehicleType else {
+        guard let selectedVehicleType = selectedVehicle?.type else {
             return 0
         }
         return selectedVehicleType.getPricePerMinute()
@@ -114,8 +114,9 @@ class MapVC: UIViewController {
         AlertManager.shared.showAlertWithCancelOption(vc: self, title: "Warning", message: "Are you sure you want to stop the engine and end the trip?", handler: {
             AlertManager.shared.showAlertMessage(vc: self, title: "Thank you for your trip.",message: "Total: \(self.totalToPay ?? 0)$. Money will be extracted from your credit card. Have a nice day!", handler: {
                 
-                if let user = self.user {
-                    FirebaseManager.shared.saveTrip(of: user, vehicleType: self.selectedVehicleType ?? .unidentified, totalPrice: self.totalToPay ?? 0, totalTimeSpent: self.timePassedLbl.text ?? "00:00:00", vc: self)
+                if let user = self.user,
+                   let vehicle = self.selectedVehicle {
+                    FirebaseManager.shared.saveTrip(of: user, vehicle: vehicle, totalPrice: self.totalToPay ?? 0, totalTimeSpent: self.timePassedLbl.text ?? "00:00:00", vc: self)
                 } else {
                     AlertManager.shared.showAlertMessage(vc: self, message: "User has some issues.", handler: {})
                 }
@@ -337,7 +338,7 @@ extension MapVC: MKMapViewDelegate {
         if vehicleView.vehicle?.id != self.selectedVehicleId {
             AlertManager.shared.showAlertWithCancelOption(vc: self, title: "Vehicle selected", message: "Do you want a route to this vehicle?", handler: {
                 self.selectedVehicleId = vehicleView.vehicle?.id
-                self.selectedVehicleType = vehicleView.vehicle?.type
+                self.selectedVehicle = vehicleView.vehicle
                 let destinationLocation = vehicleView.annotation?.coordinate
                 let destination: CLLocation = CLLocation(latitude: destinationLocation!.latitude, longitude: destinationLocation!.longitude)
                 self.loadDirections(destination: destination)
