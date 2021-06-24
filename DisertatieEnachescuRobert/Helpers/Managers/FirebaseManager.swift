@@ -33,7 +33,7 @@ struct FirebaseManager {
         let cars: [Car] = [car1, car2, car3]
         let mopeds: [Moped] = [moped1, moped2, moped3, moped4]
         let scooters: [Scooter] = [scooter1, scooter2, scooter3]
-        let ufos: [Vehicle] = [ufo1]
+        let ufos: [Vehicle] = []
         
         let vehicles: [Vehicle] = cars + mopeds + scooters + ufos
         
