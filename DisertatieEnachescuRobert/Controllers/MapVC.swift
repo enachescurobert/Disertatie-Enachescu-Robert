@@ -121,6 +121,7 @@ class MapVC: UIViewController {
             }
             
             self.stopTheTimer()
+            self.secondsPassed = 0
             
             AlertManager.shared.showAlertMessage(vc: self, title: "Thank you for your trip.", message: "Total: \(self.totalToPay ?? 0)$. Money will be extracted from your credit card. Have a nice day!", handler: {
                 self.isEngineOn = false
